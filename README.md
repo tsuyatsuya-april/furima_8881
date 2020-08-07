@@ -40,21 +40,18 @@ Things you may want to cover:
 - has_many :items
 - has_one :address
 - has_many :purchases
-- has_one :credits
 
 ## items テーブル
 | Column   | Type   | Options                        |
 | -------- | ------ | ------------------------------ |
 | name     | string | null; false                    |
 | description | text | null;false                    |
-| category_id | references | null; false |
-| state_id | references | null; false |
-| pay_state_id | references | null; false |
-| ship_origin_prefecture_id | references | null; false |
-| ship_prepare_id | references | null; false |
+| category_id | integer | null; false |
+| state_id | integer | null; false |
+| pay_state_id | integer | null; false |
+| ship_origin_prefecture_id | integer | null; false |
+| ship_prepare_id | integer | null; false |
 | price | integer | null; false                      |
-| fee   | integer |                                  |
-| profit | integer |                                 |
 | sales_user_id | integer | null; false, foreign_key :true |
 
 ### Association
@@ -66,7 +63,7 @@ Things you may want to cover:
 | Column   | Type   | Options                        |
 | -------- | ------ | ------------------------------ |
 | postalcode | string | null; false                  |
-| prefecture_id | integer | null; false, foreign_key :true |
+| prefecture_id | integer | null; false |
 | city     | string | null; false                    |
 | street   | string | null; false                    |
 | building | string |                                |
@@ -80,8 +77,8 @@ Things you may want to cover:
 ## purchases テーブル
 | Column   | Type   | Options                        |
 | -------- | ------ | ------------------------------ |
-| user_id | references | null; false, foreign_key :true |
-| item_id | references | null; false , foreign_key :true|
+| user | references | null; false, foreign_key :true |
+| item | references | null; false, foreign_key :true |
 
 ### Association
 - belongs_to :user
@@ -103,7 +100,6 @@ Things you may want to cover:
 
 ### Association
 - has_many :items
-
 
 ##  item_status テーブル
 | Column   | Type   | Options                        |
@@ -136,14 +132,3 @@ Things you may want to cover:
 | name     | string |                                |
 ### Association
 - has_many :items
-
-### credits
-| Column   | Type   | Options                        |
-| -------- | ------ | ------------------------------ |
-| credit_card_approval_code | integer | null; false  |
-| exp_month | integer | null; false                  |
-| exp_year  | integer | null; false                  |
-| secure_code | integer | null; false                |
-
-### Association
-- belongs_to_user
