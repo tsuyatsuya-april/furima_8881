@@ -38,7 +38,6 @@ Things you may want to cover:
 
 ### Association
 - has_many :items
-- has_one :address
 - has_many :purchases
 
 ## items テーブル
@@ -46,33 +45,17 @@ Things you may want to cover:
 | -------- | ------ | ------------------------------ |
 | name     | string | null; false                    |
 | description | text | null;false                    |
-| category_id | integer | null; false |
-| state_id | integer | null; false |
-| pay_state_id | integer | null; false |
-| ship_origin_prefecture_id | integer | null; false |
-| ship_prepare_id | integer | null; false |
+| category | integer | null; false |
+| state | integer | null; false |
+| pay_state | integer | null; false |
+| ship_origin_prefecture | integer | null; false |
+| ship_prepare | integer | null; false |
 | price | integer | null; false                      |
 | sales_user_id | integer | null; false, foreign_key :true |
 
 ### Association
 - belongs_to :user
-- has_one :item_image
 - has_one :purchase
-
-## addresses テーブル
-| Column   | Type   | Options                        |
-| -------- | ------ | ------------------------------ |
-| postalcode | string | null; false                  |
-| prefecture_id | integer | null; false |
-| city     | string | null; false                    |
-| street   | string | null; false                    |
-| building | string |                                |
-| phone_number | string | null; false               |
-| user_id  | integer | null; false, foreign_key :true |
-
-### Association
-- belongs_to :user
-- has_many :prefectures
 
 ## purchases テーブル
 | Column   | Type   | Options                        |
@@ -83,52 +66,18 @@ Things you may want to cover:
 ### Association
 - belongs_to :user
 - belongs_to :item
+- has_one: address
 
-##  item_images テーブル
+## addresses テーブル
 | Column   | Type   | Options                        |
 | -------- | ------ | ------------------------------ |
-| item_id | references | null; false, foreign_key :true |
-| image_url | text | null; false |
+| postalcode | string | null; false                  |
+| prefecture | integer | null; false |
+| city     | string | null; false                    |
+| street   | string | null; false                    |
+| building | string |                                |
+| phone_number | string | null; false               |
+| purchase_id  | integer | null; false, foreign_key :true |
 
 ### Association
-- belongs_to :item
-
-##  item_categories テーブル
-| Column   | Type   | Options                        |
-| -------- | ------ | ------------------------------ |
-| name     | string |                                |
-
-### Association
-- has_many :items
-
-##  item_status テーブル
-| Column   | Type   | Options                        |
-| -------- | ------ | ------------------------------ |
-| name     | string |                                |
-
-### Association
-- has_many :items
-
-##  pay_status テーブル
-| Column   | Type   | Options                        |
-| -------- | ------ | ------------------------------ |
-| name     | string |                                | 
-
-### Association
-- has_many :items
-
-##  prefectures テーブル
-| Column   | Type   | Options                        |
-| -------- | ------ | ------------------------------ |
-| name     | string |                                |
-
-### Association
-- has_many :items
-- has_many :addresses
-
-##  ship_prepares テーブル
-| Column   | Type   | Options                        |
-| -------- | ------ | ------------------------------ |
-| name     | string |                                |
-### Association
-- has_many :items
+- belongs_to :purchase
