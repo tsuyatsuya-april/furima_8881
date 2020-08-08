@@ -22,3 +22,62 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+# テーブル設計
+## users テーブル
+| Column   | Type   | Options                        |
+| -------- | ------ | ------------------------------ |
+| nickname | string | null; false                    |
+| email    | string | null; false                    |
+| password | string | null; false                    |
+| last_name  | string | null; false                  |
+| first_name | string | null; false                  |
+| last_kana_name | string | null; false              |
+| first_kana_name | string | null; false             |
+| birth | date | null; false                 |
+
+### Association
+- has_many :items
+- has_many :purchases
+
+## items テーブル
+| Column   | Type   | Options                        |
+| -------- | ------ | ------------------------------ |
+| name     | string | null; false                    |
+| description | text | null;false                    |
+| category | integer | null; false |
+| state | integer | null; false |
+| pay_state | integer | null; false |
+| ship_origin_prefecture | integer | null; false |
+| ship_prepare | integer | null; false |
+| price | integer | null; false                      |
+| sales_user_id | integer | null; false, foreign_key :true |
+
+### Association
+- belongs_to :user
+- has_one :purchase
+
+## purchases テーブル
+| Column   | Type   | Options                        |
+| -------- | ------ | ------------------------------ |
+| user | references | null; false, foreign_key :true |
+| item | references | null; false, foreign_key :true |
+
+### Association
+- belongs_to :user
+- belongs_to :item
+- has_one: address
+
+## addresses テーブル
+| Column   | Type   | Options                        |
+| -------- | ------ | ------------------------------ |
+| postalcode | string | null; false                  |
+| prefecture | integer | null; false |
+| city     | string | null; false                    |
+| street   | string | null; false                    |
+| building | string |                                |
+| phone_number | string | null; false               |
+| purchase_id  | integer | null; false, foreign_key :true |
+
+### Association
+- belongs_to :purchase
