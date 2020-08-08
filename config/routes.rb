@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root "items#index"
 
-  resouces :items
+  resources :items
   
 end
