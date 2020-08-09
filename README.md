@@ -51,7 +51,7 @@ Things you may want to cover:
 | ship_origin_prefecture | integer | null; false |
 | ship_prepare | integer | null; false |
 | price | integer | null; false                      |
-| sales_user_id | integer | null; false, foreign_key :true |
+| sales_user_id | references | null; false, foreign_key :true |
 
 ### Association
 - belongs_to :user
