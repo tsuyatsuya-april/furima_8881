@@ -16,10 +16,6 @@ class ItemsController < ApplicationController
     end
   end
 
-  # def price
-  #   render json: { amount: params[:price] }
-  # end
-
   private
 
   def item_params
