@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :item do
-    name { Faker::Movie.title }
-    description { Faker::Lorem.sentences }
+    name { "Spice & wolf" }
+    description { "this is a book" }
     category_id { 2 }
     state_id { 2 }
     pay_state_id { 2 }
