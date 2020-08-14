@@ -10,8 +10,8 @@ class Item < ApplicationRecord
   validates :name, :image, :description, :category_id, :state_id,
             :pay_state_id, :ship_origin_prefecture_id,
             :ship_prepare_id, :price, presence: true
-  validates :category_id, :state_id, :pay_state_id, 
-            :ship_prepare_id, numericality: { other_than: 1, message: "セレクトボタンにて項目を選択下さい" }
-  validates :ship_origin_prefecture_id, numericality: { other_than: 0, message: "セレクトボタンにて項目を選択下さい" } 
-  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "半角表記にて、300~9,999,999の範囲を指定下さい。" }
+  validates :category_id, :state_id, :pay_state_id,
+            :ship_prepare_id, numericality: { other_than: 1, message: 'セレクトボタンにて項目を選択下さい' }
+  validates :ship_origin_prefecture_id, numericality: { other_than: 0, message: 'セレクトボタンにて項目を選択下さい' }
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: '半角表記にて、300~9,999,999の範囲を指定下さい。' }
 end

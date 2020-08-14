@@ -8,13 +8,13 @@ RSpec.describe Item, type: :model do
     end
 
     describe '出品商品の登録' do
-      context "商品登録ができる場合" do
+      context '商品登録ができる場合' do
         it '全ての項目があれば登録できる' do
           expect(@item).to be_valid
         end
       end
 
-      context "商品が登録できない場合" do
+      context '商品が登録できない場合' do
         it '出品画像の選択をしていないと登録できない' do
           @item.image = nil
           @item.valid?
@@ -43,12 +43,12 @@ RSpec.describe Item, type: :model do
         it '配送料の負担を選択していないと登録できない' do
           @item.pay_state_id = 1
           @item.valid?
-          expect(@item.errors.full_messages).to include("Pay state セレクトボタンにて項目を選択下さい")
+          expect(@item.errors.full_messages).to include('Pay state セレクトボタンにて項目を選択下さい')
         end
         it '発送元の地域を選択していないと登録できない' do
           @item.ship_origin_prefecture_id = 0
           @item.valid?
-          expect(@item.errors.full_messages).to include("Ship origin prefecture セレクトボタンにて項目を選択下さい")
+          expect(@item.errors.full_messages).to include('Ship origin prefecture セレクトボタンにて項目を選択下さい')
         end
         it '発送までの日数を選択していないと登録できない' do
           @item.ship_prepare_id = 1
@@ -61,17 +61,17 @@ RSpec.describe Item, type: :model do
           expect(@item.errors.full_messages).to include("Price can't be blank")
         end
         it '価格のテキスト文字が半角数字以外だと登録できない' do
-          @item.price = "五五五五五"
+          @item.price = '五五五五五'
           @item.valid?
           expect(@item.errors.full_messages).to include('Price 半角表記にて、300~9,999,999の範囲を指定下さい。')
         end
         it '価格の金額が300円より下なら登録できない' do
           @item.price = 100
           @item.valid?
-          expect(@item.errors.full_messages).to include("Price 半角表記にて、300~9,999,999の範囲を指定下さい。")
+          expect(@item.errors.full_messages).to include('Price 半角表記にて、300~9,999,999の範囲を指定下さい。')
         end
         it '価格の金額が9999999以上なら登録できない' do
-          @item.price = 10000000
+          @item.price = 10_000_000
           @item.valid?
           expect(@item.errors.full_messages).to include('Price 半角表記にて、300~9,999,999の範囲を指定下さい。')
         end
