@@ -20,72 +20,60 @@ RSpec.describe Item, type: :model do
           @item.valid?
           expect(@item.errors.full_messages).to include("Image can't be blank")
         end
-        it '商品名が空にしていると登録できない' do
-          @item.email = ''
+        it '商品名を空白にしていると登録できない' do
+          @item.name = nil
           @item.valid?
-          expect(@item.errors.full_messages).to include("Email can't be blank")
+          expect(@item.errors.full_messages).to include("Name can't be blank")
         end
         it '商品名の説明が記載していないと登録できない' do
-          @item.save
-          @another = FactoryBot.build(:user)
-          @another.email = @item.email
-          @another.valid?
-          expect(@another.errors.full_messages).to include('Email has already been taken')
+          @item.description = nil
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Description can't be blank")
         end
         it 'カテゴリーを選択していないと登録できない' do
-          @item.password = 'aaaa'
-          @item.password_confirmation = @item.password
+          @item.category_id = 1
           @item.valid?
-          expect(@item.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
+          expect(@item.errors.full_messages).to include('Category セレクトボタンにて項目を選択下さい')
         end
         it '商品の状態を選択していないと登録できない' do
-          @item.password = 'aaaaaaa'
-          @item.password_confirmation = @item.password
+          @item.state_id = 1
           @item.valid?
-          expect(@item.errors.full_messages).to include('Password 半角英数字混合のパスワードにしてください')
+          expect(@item.errors.full_messages).to include('State セレクトボタンにて項目を選択下さい')
         end
         it '配送料の負担を選択していないと登録できない' do
-          @item.password_confirmation = ''
+          @item.pay_state_id = 1
           @item.valid?
-          expect(@item.errors.full_messages).to include("Password confirmation doesn't match Password")
+          expect(@item.errors.full_messages).to include("Pay state セレクトボタンにて項目を選択下さい")
         end
         it '発送元の地域を選択していないと登録できない' do
-          @item.last_name = ''
+          @item.ship_origin_prefecture_id = 0
           @item.valid?
-          expect(@item.errors.full_messages).to include("Last name can't be blank")
+          expect(@item.errors.full_messages).to include("Ship origin prefecture セレクトボタンにて項目を選択下さい")
         end
         it '発送までの日数を選択していないと登録できない' do
-          @item.last_name = 'kento4'
+          @item.ship_prepare_id = 1
           @item.valid?
-          expect(@item.errors.full_messages).to include('Last name 全角文字を使用してください')
+          expect(@item.errors.full_messages).to include('Ship prepare セレクトボタンにて項目を選択下さい')
         end
         it '価格を記載していないと登録できない' do
-          @item.first_name = ''
+          @item.price = nil
           @item.valid?
-          expect(@item.errors.full_messages).to include("First name can't be blank")
+          expect(@item.errors.full_messages).to include("Price can't be blank")
         end
         it '価格のテキスト文字が半角数字以外だと登録できない' do
-          @item.first_name = 'kento4'
+          @item.price = "五五五五五"
           @item.valid?
-          expect(@item.errors.full_messages).to include('First name 全角文字を使用してください')
+          expect(@item.errors.full_messages).to include('Price 半角表記にて、300~9,999,999の範囲を指定下さい。')
         end
         it '価格の金額が300円より下なら登録できない' do
-          @item.last_kana_name = ''
+          @item.price = 100
           @item.valid?
-          expect(@item.errors.full_messages).to include("Last kana name can't be blank")
+          expect(@item.errors.full_messages).to include("Price 半角表記にて、300~9,999,999の範囲を指定下さい。")
         end
         it '価格の金額が9999999以上なら登録できない' do
-          @item.last_kana_name = '漢字'
+          @item.price = 10000000
           @item.valid?
-          expect(@item.errors.full_messages).to include('Last kana name 全角カタカナを使用してください')
-        end
-      end
-
-      context "javascriptの動作について" do
-        it '価格に対して10%の税金と90%の利益の記載があるか' do
-          @item.first_kana_name = ''
-          @item.valid?
-          expect(@item.errors.full_messages).to include("First kana name can't be blank")
+          expect(@item.errors.full_messages).to include('Price 半角表記にて、300~9,999,999の範囲を指定下さい。')
         end
       end
     end
