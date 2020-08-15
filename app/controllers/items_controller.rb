@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
+  # トップページ以外はログインしていないと見れない(今後実装のshowアクションも除く)
   before_action :authenticate_user!, except: [:index]
   def index
+    @items = Item.all.order(id: "DESC")
   end
 
   def new
