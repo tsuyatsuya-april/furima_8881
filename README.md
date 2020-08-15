@@ -45,13 +45,13 @@ Things you may want to cover:
 | -------- | ------ | ------------------------------ |
 | name     | string | null; false                    |
 | description | text | null;false                    |
-| category | integer | null; false |
-| state | integer | null; false |
-| pay_state | integer | null; false |
-| ship_origin_prefecture | integer | null; false |
-| ship_prepare | integer | null; false |
+| category_id | integer | null; false |
+| state_id | integer | null; false |
+| pay_state_id | integer | null; false |
+| ship_origin_prefecture_id | integer | null; false |
+| ship_prepare_id | integer | null; false |
 | price | integer | null; false                      |
-| sales_user_id | references | null; false, foreign_key :true |
+| user_id | integer | null; false, foreign_key :true |
 
 ### Association
 - belongs_to :user
