@@ -23,16 +23,13 @@
         (税込) 送料込み
       </span>
     </div>
-
-    <%# ログインしていて、なおかつ、【ログインしているユーザと出品しているユーザが同一人物でないとき】表示しましょう。 %>
     <% if user_signed_in? && current_user.id == @item.user_id && @item.purchase.nil? %>
       <%= link_to '商品の編集', "#", method: :get, class: "item-red-btn" %>
       <p class='or-text'>or</p>
       <%= link_to '削除', "#", method: :delete, class:'item-destroy' %>
     <% elsif @item.purchase.nil? %>
-        <%= link_to '購入画面に進む', "#" ,class:"item-red-btn"%>
+      <%= link_to '購入画面に進む', "#" ,class:"item-red-btn"%>
     <% end %>
-
     <div class="item-explain-box">
       <span><%= @item.description %></span>
     </div>

@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-  # トップページ以外はログインしていないと見れない(今後実装のshowアクションも除く)
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:show]
   def index
@@ -18,14 +17,12 @@ class ItemsController < ApplicationController
       render :new
     end
   end
-
+  
   def show
   end
 
+
   private
-  def set_item
-    @item = Item.find(params[:id])
-  end
 
   def item_params
     params.require(:item).permit(:name, :image, :description,
@@ -33,4 +30,9 @@ class ItemsController < ApplicationController
                                  :ship_origin_prefecture_id, :ship_prepare_id,
                                  :price).merge(user_id: current_user.id)
   end
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+  
 end
