@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   # トップページ以外はログインしていないと見れない(今後実装のshowアクションも除く)
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_item, only: [:show]
   def index
     @items = Item.all.order(id: "DESC")
   end
@@ -18,7 +19,13 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+  end
+
   private
+  def set_item
+    @item = Item.find(params[:id])
+  end
 
   def item_params
     params.require(:item).permit(:name, :image, :description,
