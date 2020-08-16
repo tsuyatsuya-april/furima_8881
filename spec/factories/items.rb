@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :item do
-    name { "Spice & wolf" }
-    description { "this is a book" }
+    name { 'Spice & wolf' }
+    description { 'this is a book' }
     category_id { 2 }
     state_id { 2 }
     pay_state_id { 2 }
