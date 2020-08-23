@@ -1,10 +1,12 @@
 const pay = () => {
-  Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY);
+  Payjp.setPublicKey("pk_test_XXXXXXXX");
   const form = document.getElementById("charge-form");
   form.addEventListener("submit", (e) => {
     e.preventDefault();
+
     const formResult = document.getElementById("charge-form");
     const formData = new FormData(formResult);
+
     const card = {
       number: formData.get("number"),
       cvc: formData.get("cvc"),
@@ -31,4 +33,4 @@ const pay = () => {
   });
 };
 
-window.addEventListener('load', pay);
+window.addEventListener("load", pay);

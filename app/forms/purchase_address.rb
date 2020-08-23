@@ -1,7 +1,7 @@
 class PurchaseAddress
 
   include ActiveModel::Model
-  attr_accessor :postalcode, :prefecture_id, :city, :street, :building, :phone_number, :user_id, :item_id, :token
+  attr_accessor :postalcode, :prefecture_id, :city, :street, :building, :phone_number, :user_id, :item_id, :number, :exp_year, :exp_month, :cvc, :token
   post = /\A[0-9]{3}-[0-9]{4}\z/
   # hankaku = /\A[a-zA-Z0-9]+\z/
   # cvc_num = /\A[0-9]{3,4}\z/
@@ -14,7 +14,7 @@ class PurchaseAddress
     # validates :exp_month
     # validates :exp_year
     # validates :cvc, format: {with: cvc_num, message: "is invalid. three or four number only" }
-    # validates :token
+    validates :token
   end
   validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
 
