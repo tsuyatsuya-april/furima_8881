@@ -31,13 +31,8 @@ const pay = () => {
       } else {
         
 
-        document.getElementById("card-number").removeAttribute("name");
-        document.getElementById("card-cvc").removeAttribute("name");
-        document.getElementById("card-exp-month").removeAttribute("name");
-        document.getElementById("card-exp-year").removeAttribute("name");
-
-        document.getElementById("charge-form").submit();
-        document.getElementById("charge-form").reset();
+        $(".buy-red-btn").prop('disabled', false);
+          alert("カード情報を正しく入力してください");
       }
     });
   });
