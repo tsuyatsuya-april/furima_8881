@@ -1,6 +1,6 @@
 class PurchaseAddress
   include ActiveModel::Model
-  attr_accessor :postalcode, :prefecture_id, :city, :street, :building, :phone_number, :user_id, :item_id, :token
+  attr_accessor :postalcode, :prefecture_id, :city, :street, :building, :phone_number, :user_id, :item_id
   post = /\A[0-9]{3}-[0-9]{4}\z/
   phone = /\A[0-9]+\z/
   with_options presence: true do
