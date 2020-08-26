@@ -1,5 +1,7 @@
 class PurchasesController < ApplicationController
-
+  before_action :authenticate_user!
+  before_action :set_item
+  before_action :conform_item_user
   def new
     @item = Item.find(params[:item_id])
     @purchase = PurchaseAddress.new
@@ -35,6 +37,16 @@ class PurchasesController < ApplicationController
       card: params[:token],
       currency: 'jpy'
     )
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
+  def conform_item_user
+    if current_user.id = Item.find(params[:item_id]).user_id || params[:item_id] = nil
+      redirect_to root_path
+    end
   end
 
 end
