@@ -18,11 +18,11 @@ const pay = () => {
       if (status === 200){
         const token = response.id;
         const renderDom = document.getElementById("charge-form");
-        const tokenObj = `<input value=${token} type="hidden" name='token'>`;
+        const tokenObj = `<input value=${token} type="hidden" name='purchase_address[token]'>`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
       } else {
         const renderDom = document.getElementById("charge-form");
-        const tokenObj = `<input value="" type="hidden" name='token'>`;
+        const tokenObj = `<input value="" type="hidden" name='purchase_address[token]'>`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
         // $(".buy-red-btn").prop('disabled', false);
         //   alert("カード情報を正しく入力してください");
