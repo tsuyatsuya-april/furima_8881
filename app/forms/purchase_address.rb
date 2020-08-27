@@ -1,6 +1,6 @@
 class PurchaseAddress
   include ActiveModel::Model
-  attr_accessor :postalcode, :prefecture_id, :city, :street, :building, :phone_number, :user_id, :item_id
+  attr_accessor :postalcode, :prefecture_id, :city, :street, :building, :phone_number, :user_id, :item_id, :token
   post = /\A[0-9]{3}-[0-9]{4}\z/
   phone = /\A[0-9]{,11}\z/
   with_options presence: true do
@@ -8,6 +8,7 @@ class PurchaseAddress
     validates :city
     validates :street
     validates :phone_number, format: { with: phone, message: 'is invalid. Please only half size number' }
+    validates :token
   end
   validates :prefecture_id, numericality: { other_than: 0, message: 'select' }
 
